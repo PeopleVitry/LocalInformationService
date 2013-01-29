@@ -1,9 +1,8 @@
-<style type="text/css">
-    .elgg-inner {
-        width: 100%;
-        margin: 0 auto;}
+﻿<style type="text/css">
+   
     #container {
         position: absolute;
+		width:100%;
     }
     .zoom {
         margin-left: 8px;
@@ -158,6 +157,7 @@
         margin: 1px 0 0;
         opacity: 0.75;
     }
+	img{max-width:100%;}
 </style>
 
 <script type="text/javascript" src="<?php echo elgg_get_site_url(); ?>/vendors/jquery/jquery.zoomooz.min.js"></script>
@@ -172,27 +172,7 @@
             $("body").zoomTo();
         });
         $("body").zoomTo();
-    });
-</script>
-
-<script type="text/javascript">
-    // Execution de cette fonction lorsque le DOM sera entièrement chargé
-    $(document).ready(function() {
-        // Masquage des réponses
-        $(".contenu").hide();
-        // CSS : curseur pointeur
-        $(".titre").css("cursor", "pointer");
-        // Clic sur la question
-        $(".titre").click(function() {
-            // Actions uniquement si la réponse n'est pas déjÃ  visible
-            if($(this).next().is(":visible") == false) {
-                // Masquage des réponses
-                $(".contenu").slideUp();
-                $(".contenu").css("visibility","visible");
-                // Affichage de la réponse placée juste après dans le code HTML
-                $(this).next().slideDown();
-            }
-        });
+		$(".elgg-page-footer").remove();//suppression du footer de semantic search
     });
 </script>
 
@@ -234,63 +214,82 @@ function AfficheSource($url) {
             <a href="http://maps.google.fr/maps?f=q&amp;source=embed&amp;hl=fr&amp;geocode=&amp;q=120+Rue+Paul+Armangot,+Vitry-sur-Seine&amp;aq=1&amp;oq=120+rue+paul+a&amp;sll=46.75984,1.738281&amp;sspn=8.174018,21.643066&amp;ie=UTF8&amp;hq=&amp;hnear=120+Rue+Paul+Armangot,+94400+Vitry-sur-Seine,+Val-De-Marne,+%C3%8Ele-de-France&amp;t=m&amp;z=14&amp;ll=48.776814,2.376365" style="color: FF9900; font-size: 8px;">Agrandir le plan</a>
         </p>
     </div>
-	
-    <div id="a4" class="zoom levelMeteo">
-        <h6 class="title">Météo</h6>
-        <p style="text-align:center;margin-top:15px;"><img src ="http://weathersticker.wunderground.com/weathersticker/cgi-bin/banner/ban/wxBanner?bannertype=wu_clean2day_metric_cond&airportcode=LFPO&ForcedCity=Vitry-sur-Seine&ForcedState=&wmo=07149&language=FR" /></p>
-    </div>
+	    <div id="a5" class="zoom levelAir">
+      <h6 class="title">Autres services</h6>
+        <div style="float:left;margin-left:20px;margin-top:20px;">
+            <a href="ssearch/">
+                <img src="mod/LocalInformationService/graphics/semantic.png" alt="Recherche sémantique" title="Recherche sémantique" />
+            </a>
+        </div>
+	 
+     <div style="float:left;margin-left:20px;margin-top:10px;">
+         <a href="http://www.airparif.fr/etat-air/air-et-climat-commune/ninsee/94081">      
+             <img src="mod/LocalInformationService/graphics/logo_airparif.png" alt="Air et climat de votre commune" title="Air et climat de votre commune" />
+         </a>
+     </div>
+     <br style="clear: both" />
+     
+     <div>
+      <p style="color: #222;text-align: center;">
+         Votre avis nous intéresse, merci de remplir   
+         <a href="mod/LocalInformationService/views/default/page/layouts/feedback.php"> ce questionnaire </a>.
+      </p>
+     </div>
+     </div> 
+    
 	
     <div id="a2" class="zoom levelBus">
         <h6 class="title">Horaire de bus</h6>
-        <div style="width: 140px; margin-left: 5px; text-align: center; line-height: 30px; float: left">
-            <div class="titre">
+        
+            <div style="float:left;margin-top:5px;">
                 <img src="mod/LocalInformationService/graphics/132.jpg" />
             </div>
     
-            <div class="contenu" style="background: #66308E; color: #fff;visibility:hidden;">
+            <div style="float:left;line-height:20px;">
+			<ol>
                 <?php
                 //Url de la page web
                 $domaine = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B132/132_566_598/A";
                 $domaine1 = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B132/132_566_598/R";
                 //On affiche le code 
                 //Dirction Vitry Moulin Vert
-                echo '<p style="font-size:10px;">- Vitry Moulin Vert dans :' . AfficheSource($domaine)."<br />";
+                echo '<li> Vitry Moulin Vert dans :' . AfficheSource($domaine)."</li>";
                 //Dirction BFM
-                echo '- BFM dans :' . AfficheSource($domaine1).'</p>';
+                echo '<li> BFM dans :' . AfficheSource($domaine1).'</li>';
                 ?>
+			</ol>
            </div>
-       </div> 
-	   
-        <div style="width: 140px; text-align: center; line-height: 30px; float: left">
-         <div class="titre">
+		  
+		   <div style="float:left;margin-top:5px;">
            <img src="mod/LocalInformationService/graphics/180.jpg" />
-         </div>
-         <div class="contenu" style="background: #C3C243; color: #222; visibility: hidden;">
-             <?php
+            </div>
+            <div style="float:left;line-height:20px;">
+             <ol>
+			 <?php
               //Url de la page web
               $domaine = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B180/180_313_344/R";
               $domaine1 = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B180/180_313_344/A";
               //On affiche le code 
               //Dirction Louis Aragant
-              echo '<p style="font-size:10px;">- Louis Aragant  dans :'. AfficheSource($domaine)."<br />";
+              echo '<li> Louis Aragant  dans :'. AfficheSource($domaine)."</li>";
               //Dirction Choisy Sud 
-              echo '- Charenton-Ecoles dans :' . AfficheSource($domaine1).'</p>';
+              echo '<li>Charenton-Ecoles dans :' . AfficheSource($domaine1).'</li>';
              ?>
-       </div>
-      
-        </div> 
-	  
-        <img style="float: right;" src="mod/LocalInformationService/graphics/home_e.gif" border="0" title="infos ratp" alt="infos ratp" />
-  
-        
+			 </ol>
+       </div> 
+	    <img style="float:right;" src="mod/LocalInformationService/graphics/home_e.gif" border="0" title="infos ratp" alt="infos ratp" />
     </div>
- 
+
     <br style="clear: both" />
     <div id="a3" class="zoom levelInfo">
         <h6 class="title">Bulletin Trafic Routier</h6>
-        <script type="text/javascript" src="http://www.infotrafic.com/js/affiliate.js.php?Affi=d51aee2659ed0810cd1aa232df22a3a2"></script>
+        <script type="text/javascript" src="http://www.infotrafic.com/js/affiliate.js.php?Affi=d51aee2659ed0810cd1aa232df22a3a2" ></script>
     </div>
     <!------->
+	 <div id="a4" class="zoom levelMeteo">
+        <h6 class="title">Météo</h6>
+        <p style="text-align:center;margin-top:15px;"><img src ="http://weathersticker.wunderground.com/weathersticker/cgi-bin/banner/ban/wxBanner?bannertype=wu_clean2day_metric_cond&airportcode=LFPO&ForcedCity=Vitry-sur-Seine&ForcedState=&wmo=07149&language=FR" /></p>
+    </div>
     <div id="a5" class="zoom levelTrafic">
         <h6 class="title">Bulletin Trafic du Transport en Commun</h6>
        	<?php
@@ -315,41 +314,22 @@ function AfficheSource($url) {
 		?>
     </div>
 
-    <div id="a5" class="zoom levelAir">
-      <h6 class="title">Autres services</h6>
-        <div style="float:left;margin-left:20px;margin-top:20px;">
-            <a href="ssearch/">
-                <img src="mod/LocalInformationService/graphics/semantic.png" alt="Recherche sémantique" title="Recherche sémantique" />
-            </a>
-        </div>
-	 
-     <div style="float:left;margin-left:20px;margin-top:10px;">
-         <a href="http://www.airparif.fr/etat-air/air-et-climat-commune/ninsee/94081">      
-             <img src="mod/LocalInformationService/graphics/logo_airparif.png" alt="Air et climat de votre commune" title="Air et climat de votre commune" />
-         </a>
-     </div>
-     <br style="clear: both" />
-     
-     <div>
-      <p style="color: #222;text-align: center;">
-         Votre avis nous intéresse, merci de remplir   
-         <a href="mod/LocalInformationService/views/default/page/layouts/feedback.php"> ce questionnaire </a>.
-      </p>
       
-     </div>
-     
-    </div>
-	<div class="elgg-page-footer">
-		<div class="elgg-footer-copyright">
+
+
+<div style="clear:both;margin-bottom:0;width:100%;height:100px;background:#008080;">
+		<div class="elgg-footer-copyright" style="margin-left: 181px;margin-top:10px;padding: 8px;font-weight:normal;">
 		<p>ICOS has been developed within the project "PEOPLE: Pilot smart urban Ecosystems leveraging Open innovation for Promoting and enabLing future E- services", which is partly funded by the European Commission. Copyright © 2012 URENIO Research</p>
 		<p>Proudly powered by Citypassenger</p>
 		</div>
-		<div class="elgg-footer-logos">
+		<div class="elgg-footer-logos" style="margin-top:10px;">
 		<img src ="<?php echo elgg_get_site_url(); ?>mod/vitryhubtheme/graphics/logo-people.png" border="0" alt="People Smart Cities" title="People Smart Cities"/>
 		<img src ="<?php echo elgg_get_site_url(); ?>mod/vitryhubtheme/graphics/logo-eu-small.png" border="0" alt="UE logo" title="UE logo" />
-		<?php //echo elgg_view('page/elements/footer', $vars); ?></div>
-		</div>	      
+		</div>
+	  
 </div>
+</div>
+ 
 <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -361,6 +341,7 @@ function AfficheSource($url) {
         pageTracker._trackPageview();
     } catch(err) {}
 </script>
+
 
 
 
