@@ -73,7 +73,7 @@
 
     .levelMeteo {
         float: left;
-		margin-left: 30px;
+        margin-left: 30px;
         width:500px;
         height: 180px;
         border: 1px solid #FFFF82;
@@ -206,6 +206,7 @@ function AfficheSource($url) {
 
 <div id="container">
     <div id="a1" class="zoom levelPlan">
+        
         <h6 class="title">Plan</h6>
         <p>
             <iframe width="600" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.fr/maps?f=q&amp;source=s_q&amp;hl=fr&amp;geocode=&amp;q=120+Rue+Paul+Armangot,+Vitry-sur-Seine&amp;aq=1&amp;oq=120+rue+paul+a&amp;sll=46.75984,1.738281&amp;sspn=8.174018,21.643066&amp;ie=UTF8&amp;hq=&amp;hnear=120+Rue+Paul+Armangot,+94400+Vitry-sur-Seine,+Val-De-Marne,+%C3%8Ele-de-France&amp;t=m&amp;z=14&amp;ll=48.776814,2.376365&amp;output=embed"></iframe>
@@ -214,39 +215,36 @@ function AfficheSource($url) {
             <a href="http://maps.google.fr/maps?f=q&amp;source=embed&amp;hl=fr&amp;geocode=&amp;q=120+Rue+Paul+Armangot,+Vitry-sur-Seine&amp;aq=1&amp;oq=120+rue+paul+a&amp;sll=46.75984,1.738281&amp;sspn=8.174018,21.643066&amp;ie=UTF8&amp;hq=&amp;hnear=120+Rue+Paul+Armangot,+94400+Vitry-sur-Seine,+Val-De-Marne,+%C3%8Ele-de-France&amp;t=m&amp;z=14&amp;ll=48.776814,2.376365" style="color: FF9900; font-size: 8px;">Agrandir le plan</a>
         </p>
     </div>
-	    <div id="a5" class="zoom levelAir">
-      <h6 class="title">Autres services</h6>
+	    
+    <div id="a5" class="zoom levelAir">
+        <h6 class="title">Autres services</h6>
         <div style="float:left;margin-left:20px;margin-top:20px;">
             <a href="ssearch/">
                 <img src="mod/LocalInformationService/graphics/semantic.png" alt="Recherche sémantique" title="Recherche sémantique" />
             </a>
         </div>
-	 
-     <div style="float:left;margin-left:20px;margin-top:10px;">
-         <a href="http://www.airparif.fr/etat-air/air-et-climat-commune/ninsee/94081">      
+        <div style="float:left;margin-left:20px;margin-top:10px;">
+            <a href="http://www.airparif.fr/etat-air/air-et-climat-commune/ninsee/94081">      
              <img src="mod/LocalInformationService/graphics/logo_airparif.png" alt="Air et climat de votre commune" title="Air et climat de votre commune" />
-         </a>
-     </div>
-     <br style="clear: both" />
+            </a>
+        </div>
      
-     <div>
-      <p style="color: #222;text-align: center;">
-         Votre avis nous intéresse, merci de remplir   
-         <a href="mod/LocalInformationService/views/default/page/layouts/feedback.php"> ce questionnaire </a>.
-      </p>
-     </div>
-     </div> 
+        <br style="clear: both" />
+        <div>
+            <p style="color: #222;text-align: center;">
+                Votre avis nous intéresse, merci de remplir 
+                <a href="mod/LocalInformationService/views/default/page/layouts/feedback.php"> ce questionnaire </a>.
+            </p>
+        </div>
+    </div> 
     
-	
     <div id="a2" class="zoom levelBus">
         <h6 class="title">Horaire de bus</h6>
-        
-            <div style="float:left;margin-top:5px;">
-                <img src="mod/LocalInformationService/graphics/132.jpg" />
-            </div>
-    
-            <div style="float:left;line-height:20px;">
-			<ol>
+        <div style="float:left;margin-top:5px;">
+            <img src="mod/LocalInformationService/graphics/132.jpg" />
+        </div>     
+        <div style="float:left;line-height:20px;">
+            <ol>
                 <?php
                 //Url de la page web
                 $domaine = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B132/132_566_598/A";
@@ -257,27 +255,26 @@ function AfficheSource($url) {
                 //Dirction BFM
                 echo '<li> BFM dans :' . AfficheSource($domaine1).'</li>';
                 ?>
-			</ol>
+            </ol>
            </div>
-		  
-		   <div style="float:left;margin-top:5px;">
-           <img src="mod/LocalInformationService/graphics/180.jpg" />
-            </div>
-            <div style="float:left;line-height:20px;">
+        <div style="float:left;margin-top:5px;">
+           <img src="mod/LocalInformationService/graphics/180.jpg" />         
+        </div>
+        <div style="float:left;line-height:20px;">
              <ol>
-			 <?php
-              //Url de la page web
-              $domaine = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B180/180_313_344/R";
-              $domaine1 = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B180/180_313_344/A";
-              //On affiche le code 
-              //Dirction Louis Aragant
-              echo '<li> Louis Aragant  dans :'. AfficheSource($domaine)."</li>";
-              //Dirction Choisy Sud 
-              echo '<li>Charenton-Ecoles dans :' . AfficheSource($domaine1).'</li>';
-             ?>
-			 </ol>
-       </div> 
-	    <img style="float:right;" src="mod/LocalInformationService/graphics/home_e.gif" border="0" title="infos ratp" alt="infos ratp" />
+                <?php
+                //Url de la page web
+                $domaine = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B180/180_313_344/R";
+                $domaine1 = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B180/180_313_344/A";
+                //On affiche le code 
+                //Dirction Louis Aragant
+                echo '<li> Villejuif Louis Aragon  dans :'. AfficheSource($domaine)."</li>";
+                //Dirction Choisy Sud 
+                echo '<li>Charenton-Ecoles dans :' . AfficheSource($domaine1).'</li>';
+                ?>
+             </ol>
+            </div> 
+        <img style="float:right;" src="mod/LocalInformationService/graphics/home_e.gif" border="0" title="infos ratp" alt="infos ratp" />
     </div>
 
     <br style="clear: both" />
@@ -286,10 +283,18 @@ function AfficheSource($url) {
         <script type="text/javascript" src="http://www.infotrafic.com/js/affiliate.js.php?Affi=d51aee2659ed0810cd1aa232df22a3a2" ></script>
     </div>
     <!------->
-	 <div id="a4" class="zoom levelMeteo">
-        <h6 class="title">Météo</h6>
-        <p style="text-align:center;margin-top:15px;"><img src ="http://weathersticker.wunderground.com/weathersticker/cgi-bin/banner/ban/wxBanner?bannertype=wu_clean2day_metric_cond&airportcode=LFPO&ForcedCity=Vitry-sur-Seine&ForcedState=&wmo=07149&language=FR" /></p>
+    
+    <div id="a4" class="zoom levelMeteo">
+        <h6 class="title">Météo</h6>    
+        <div style="margin:auto; width:65%; margin-top:15px;">
+            <div id="widget_b41c37756368fe752632fe47fd38df78">
+            <a href="http://www.my-meteo.fr/previsions+meteo+france/paris.html" title="M&eacute;t&eacute;o Paris"> </a>
+            <script type="text/javascript" src="http://www.my-meteo.fr/meteo+webmaster/widget/js.php?ville=251&amp;format=horizontal&amp;nb_jours=2&amp;temps&amp;icones&amp;c1=414141&amp;c2=21a2f3&amp;c3=d4d4d4&amp;c4=FFF&amp;id=b41c37756368fe752632fe47fd38df78">
+            </script>
+            </div>
+        </div>
     </div>
+    
     <div id="a5" class="zoom levelTrafic">
         <h6 class="title">Bulletin Trafic du Transport en Commun</h6>
        	<?php
