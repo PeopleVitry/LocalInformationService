@@ -184,9 +184,7 @@ if (elgg_is_logged_in()) {
     $top_box = $vars['login'];
 }
 ?>
-<?php
-
-function AfficheSource($url) {
+<?php function AfficheSource($url) {
     if ($ouverture = @fopen($url, "rb")) {
         if ($lecture = stream_get_contents($ouverture)) {
             $pos = strpos($lecture, 'mn<');
@@ -201,9 +199,20 @@ function AfficheSource($url) {
         }
     }
     @fclose($ouverture);
-}
-?>
-
+}?>
+<?php function GetPollutionIndex($url) {
+    if ($ouverture = @fopen($url, "rb")) {
+        if ($lecture = stream_get_contents($ouverture))
+                        {
+				$cpos = strpos($lecture, 'header_airquality');
+				$pos = strpos($lecture, 'header_tools');
+                                $inf=substr($lecture, $cpos+19, $pos - $cpos-19);
+                                $cval=substr($inf,strpos($inf, '<strong>')+8,2);                               		
+			}
+            return $cval;
+        }
+    @fclose($ouverture);
+}?>
 <div id="container">
     <div id="a1" class="zoom levelPlan">
         
@@ -239,14 +248,26 @@ function AfficheSource($url) {
     </div> 
     
     <div id="a4" class="zoom levelMeteo">
-        <h6 class="title">Météo</h6>    
-        <div style="margin:auto; width:65%; margin-top:15px;">
+        <h6 class="title">Météo Et Qualité de l'Air de Votre Commune</h6>    
+        <div style="margin-left: 10px; margin-top:15px;float:left;">
             <div id="widget_b41c37756368fe752632fe47fd38df78">
-            <a href="http://www.my-meteo.fr/previsions+meteo+france/paris.html" title="M&eacute;t&eacute;o Paris"> </a>
-            <script type="text/javascript" src="http://www.my-meteo.fr/meteo+webmaster/widget/js.php?ville=251&amp;format=horizontal&amp;nb_jours=2&amp;temps&amp;icones&amp;c1=414141&amp;c2=21a2f3&amp;c3=d4d4d4&amp;c4=FFF&amp;id=b41c37756368fe752632fe47fd38df78">
-            </script>
-            </div>
+                <a href="http://www.my-meteo.fr/previsions+meteo+france/paris.html" title="M&eacute;t&eacute;o Paris"> </a>
+                <script type="text/javascript" src="http://www.my-meteo.fr/meteo+webmaster/widget/js.php?ville=251&amp;format=horizontal&amp;nb_jours=2&amp;temps&amp;icones&amp;c1=414141&amp;c2=21a2f3&amp;c3=d4d4d4&amp;c4=FFF&amp;id=b41c37756368fe752632fe47fd38df78"></script>
+            </div>         
         </div>
+        <div style="border:1px solid #d4d4d4;width: 130px; height: 120px; margin-right:10px; margin-top: 15px;margin-left:auto">       
+                <div style="text-decoration:underline;font-style:italic;font-size:14px;text-align:center;margin:2px 0 4px 0; color: #21a2f3;">
+                     Pollution
+                </div>
+                <div style="float:left;">
+                    <img src="mod/LocalInformationService/graphics/pollution1.png" width="50" height="90" />
+                </div>
+                <div style="margin-left:70px;margin-top:30px;font-weight: bold;font-size:16px;">   
+                    <?php
+                    $url="http://www.airparif.fr/etat-air/air-et-climat-commune/ninsee/94081";
+                    echo GetPollutionIndex($url); ?> 
+                </div>    
+            </div> 
     </div>
     <br style="clear: both" />
     <div id="a3" class="zoom levelInfo">
