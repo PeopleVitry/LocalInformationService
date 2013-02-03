@@ -213,6 +213,7 @@ if (elgg_is_logged_in()) {
         }
     @fclose($ouverture);
 }?>
+
 <div id="container">
     <div id="a1" class="zoom levelPlan">
         
