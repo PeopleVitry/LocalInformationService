@@ -267,7 +267,10 @@ if (elgg_is_logged_in()) {
                     <?php
                     $url="http://www.airparif.fr/etat-air/air-et-climat-commune/ninsee/94081";
                     echo GetPollutionIndex($url); ?> 
-                </div>    
+                </div> 
+                <div style="margin-left:77px;margin-top:15px;">
+                    <img src="mod/LocalInformationService/graphics/logo-airparif.png" width="50" height="35" />
+                </div>
             </div> 
     </div>
     <br style="clear: both" />
