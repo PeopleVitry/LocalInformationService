@@ -269,7 +269,7 @@ if (elgg_is_logged_in()) {
                     echo GetPollutionIndex($url); ?> 
                 </div> 
                 <div style="margin-left:77px;margin-top:15px;">
-                    <img src="mod/LocalInformationService/graphics/logo-airparif.png" width="50" height="35" />
+                    <img src="mod/LocalInformationService/graphics/logo-airparif.png" width="50" height="35" alt="Air et climat de votre commune" title="Air et climat de votre commune"/>
                 </div>
             </div> 
     </div>
