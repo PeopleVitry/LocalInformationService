@@ -250,15 +250,15 @@ if (elgg_is_logged_in()) {
     
     <div id="a4" class="zoom levelMeteo">
         <h6 class="title">Météo Et Qualité de l'Air de Votre Commune</h6>    
-        <div style="margin-left: 10px; margin-top:15px;float:left;">
-            <div id="widget_b41c37756368fe752632fe47fd38df78">
-                <a href="http://www.my-meteo.fr/previsions+meteo+france/paris.html" title="M&eacute;t&eacute;o Paris"> </a>
-                <script type="text/javascript" src="http://www.my-meteo.fr/meteo+webmaster/widget/js.php?ville=251&amp;format=horizontal&amp;nb_jours=2&amp;temps&amp;icones&amp;c1=414141&amp;c2=21a2f3&amp;c3=d4d4d4&amp;c4=FFF&amp;id=b41c37756368fe752632fe47fd38df78"></script>
-            </div>         
+        <div style="margin-left: 10px; margin-top:30px;float:left;">
+            <div id="widget_b3e2d1a30c710a9f7883610fc1f13136">
+                <a href="http://www.my-meteo.fr/previsions+meteo+france/paris.html" title="M&eacute;t&eacute;o Paris"></a>
+                <script type="text/javascript" src="http://www.my-meteo.fr/meteo+webmaster/widget/js.php?ville=251&amp;format=horizontal&amp;nb_jours=2&amp;icones&amp;c1=414141&amp;c2=21a2f3&amp;c3=d4d4d4&amp;c4=FFF&amp;id=b3e2d1a30c710a9f7883610fc1f13136"></script>
+            </div>        
         </div>
         <div style="border:1px solid #d4d4d4;width: 130px; height: 120px; margin-right:10px; margin-top: 15px;margin-left:auto">       
                 <div style="text-decoration:underline;font-style:italic;font-size:14px;text-align:center;margin:2px 0 4px 0; color: #21a2f3;">
-                     Pollution
+                     Indice de Pollution
                 </div>
                 <div style="float:left;">
                     <img src="mod/LocalInformationService/graphics/pollution1.png" width="50" height="90" />
