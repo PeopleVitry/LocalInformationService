@@ -1,4 +1,4 @@
-<style type="text/css">
+﻿<style type="text/css">
    
     #container {
         position: absolute;
@@ -249,8 +249,8 @@ if (elgg_is_logged_in()) {
     </div> 
     
     <div id="a4" class="zoom levelMeteo">
-        <h6 class="title">Météo Et Qualité de l'Air de Votre Commune</h6>    
-        <div style="margin-left: 10px; margin-top:30px;float:left;">
+        <h6 class="title">Météo Et Qualité de l'Air</h6>    
+        <div style="margin-left: 10px; margin-top:27px;float:left;">
             <div id="widget_b3e2d1a30c710a9f7883610fc1f13136">
                 <a href="http://www.my-meteo.fr/previsions+meteo+france/paris.html" title="M&eacute;t&eacute;o Paris"></a>
                 <script type="text/javascript" src="http://www.my-meteo.fr/meteo+webmaster/widget/js.php?ville=251&amp;format=horizontal&amp;nb_jours=2&amp;icones&amp;c1=414141&amp;c2=21a2f3&amp;c3=d4d4d4&amp;c4=FFF&amp;id=b3e2d1a30c710a9f7883610fc1f13136"></script>
@@ -292,9 +292,9 @@ if (elgg_is_logged_in()) {
                 $domaine1 = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B132/132_566_598/R";
                 //On affiche le code 
                 //Dirction Vitry Moulin Vert
-                echo '<li> Vitry Moulin Vert dans :' . AfficheSource($domaine)."</li>";
+                echo '<li> Vitry Moulin Vert:' . AfficheSource($domaine)."</li>";
                 //Dirction BFM
-                echo '<li> BFM dans :' . AfficheSource($domaine1).'</li>';
+                echo '<li> B.F.Mitterrand:' . AfficheSource($domaine1).'</li>';
                 ?>
             </ol>
            </div>
@@ -309,9 +309,9 @@ if (elgg_is_logged_in()) {
                 $domaine1 = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B180/180_313_344/A";
                 //On affiche le code 
                 //Dirction Louis Aragant
-                echo '<li> Villejuif Louis Aragon  dans :'. AfficheSource($domaine)."</li>";
+                echo '<li> Villejuif Louis Aragon:'. AfficheSource($domaine)."</li>";
                 //Dirction Choisy Sud 
-                echo '<li>Charenton-Ecoles dans :' . AfficheSource($domaine1).'</li>';
+                echo '<li>Charenton-Ecoles:' . AfficheSource($domaine1).'</li>';
                 ?>
              </ol>
             </div> 
