@@ -1,5 +1,8 @@
-﻿<link rel="stylesheet" type="text/css" href="<?php echo elgg_get_site_url(); ?>/vendors/css/style-localinformation.css" media="all">
-
+﻿<?php
+define('DS', DIRECTORY_SEPARATOR);
+define('BASE_PATH', dirname(__FILE__).DS);
+?>
+<link rel="stylesheet" type="text/css" href="<?php echo elgg_get_site_url(); ?>/vendors/css/style-localinformation.css" media="all">
 <script type="text/javascript" src="<?php echo elgg_get_site_url(); ?>/vendors/jquery/jquery.zoomooz.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -13,6 +16,9 @@
         });
         $("body").zoomTo();
 		$(".elgg-page-footer").remove();//suppression du footer de semantic search
+		setInterval(function(){
+          $('#ajax-refresh').load("mod/LocalInformationService/views/default/page/layouts/horaires.php");
+        }, 3000);
     });
 </script>
 
@@ -24,22 +30,7 @@ if (elgg_is_logged_in()) {
     $top_box = $vars['login'];
 }
 ?>
-<?php function AfficheSource($url) {
-    if ($ouverture = @fopen($url, "rb")) {
-        if ($lecture = stream_get_contents($ouverture)) {
-            $pos = strpos($lecture, 'mn<');
-            $inf = substr($lecture, $pos - 3, 5);
-            if (strpbrk($inf, '<')) {
-                $inf = strtr($inf, '<', ' ');
-            }
-            if (strpbrk($inf, '>')) {
-                $inf = strtr($inf, '>', ' ');
-            }
-            return $inf;
-        }
-    }
-    @fclose($ouverture);
-}?>
+
 <?php function GetPollutionIndex($url) {
     if ($ouverture = @fopen($url, "rb")) {
         if ($lecture = stream_get_contents($ouverture))
@@ -101,7 +92,7 @@ if (elgg_is_logged_in()) {
     <div id="a5" class="zoom levelAir">
         <h6 class="title">Local Search</h6>
 		<div style="margin-left:5px;margin-top:15px;float:left;">
-       <a href="../local-search/"><img src="mod/LocalInformationService/graphics/world-search.png" /></a>
+       <a href="../SemanticSearch/"><img src="mod/LocalInformationService/graphics/world-search.png" /></a>
 	   </div>
 	   <div style="float:left;margin-top:35px;">
 	   <h2 style="color:#222;">LOCAL SEARCH</h2>
@@ -142,42 +133,10 @@ if (elgg_is_logged_in()) {
     <!------->
      <div id="a2" class="zoom levelBus">
         <h6 class="title">Horaire de bus</h6>
-        <div style="float:left;margin-top:5px;">
-            <img src="mod/LocalInformationService/graphics/132.jpg" />
-        </div>     
-        <div style="float:left;line-height:20px;">
-            <ol>
-                <?php
-                //Url de la page web
-                $domaine = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B132/132_566_598/A";
-                $domaine1 = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B132/132_566_598/R";
-                //On affiche le code 
-                //Dirction Vitry Moulin Vert
-                echo '<li> Vitry Moulin Vert:' . AfficheSource($domaine)."</li>";
-                //Dirction BFM
-                echo '<li> B.F.Mitterrand:' . AfficheSource($domaine1).'</li>';
-                ?>
-            </ol>
-        </div>
-		<p style="clear:both;"></p>
-        <div style="float:left;margin-top:5px;">
-           <img src="mod/LocalInformationService/graphics/180.jpg" />         
-        </div>
-        <div style="float:left;line-height:20px;">
-             <ol>
-                <?php
-                //Url de la page web
-                $domaine = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B180/180_313_344/R";
-                $domaine1 = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B180/180_313_344/A";
-                //On affiche le code 
-                //Dirction Louis Aragant
-                echo '<li> Villejuif Louis Aragon:'. AfficheSource($domaine)."</li>";
-                //Dirction Choisy Sud 
-                echo '<li>Charenton-Ecoles:' . AfficheSource($domaine1).'</li>';
-                ?>
-             </ol>
-            </div> 
-        <img style="float:right;margin-top:-50px;" src="mod/LocalInformationService/graphics/home_e.gif" border="0" title="infos ratp" alt="infos ratp" />
+		 <div id="ajax-refresh">
+       <?php include(BASE_PATH.'horaires.php');?>
+	    </div>
+	   <img style="float:right;margin-top:-50px;" src="mod/LocalInformationService/graphics/home_e.gif" border="0" title="infos ratp" alt="infos ratp" />
     </div>
     
     <div id="a5" class="zoom levelTrafic">
