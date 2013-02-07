@@ -1,164 +1,4 @@
-﻿<style type="text/css">
-   
-    #container {
-        position: absolute;
-		width:100%;
-    }
-    .zoom {
-        margin-left: 8px;
-        margin-top: 10px;
-        border: 1px solid black;
-    }
-
-    .levelPlan {
-        margin-left:3em;
-        width: 600px;
-        height: 380px;
-        border: 1px solid #EDBD4E;
-    }
-
-    .levelPlan h6 {
-        background: #EDBD4E;
-        color: #222;
-        -moz-border-radius: 10px 10px 0 0;
-        -webkit-border-radius: 10px 10px 0 0;
-        border-radius: 10px 10px 0 0;
-    }
-
-    .levelInfo {
-        margin-left:3em;
-        width: 600px;
-        height: 400px;
-        border: 1px solid #7AE37B;
-    }
-
-    .levelInfo h6 {
-        background: #7AE37B;
-        color: #222;
-        -moz-border-radius: 10px 10px 0 0;
-        -webkit-border-radius: 10px 10px 0 0;
-        border-radius: 10px 10px 0 0;
-    }
-
-    .levelBus {
-        margin-left: 30px;
-        width: 500px;
-        height: 180px;
-        border: 1px solid #24A691;
-    }
-
-    .levelBus h6 {
-        background: #24A691;
-        color: #fff;
-        -moz-border-radius: 10px 10px 0 0;
-        -webkit-border-radius: 10px 10px 0 0;
-        border-radius: 10px 10px 0 0;
-    }
-
-    .levelAir {
-        width:500px;
-        margin-left: 30px;
-        float: left;
-        height: 180px;
-        border: 1px solid #055A9F;
-    }
-
-    .levelAir h6 {
-        background: #055A9F;
-        color: #fff;
-        -moz-border-radius: 10px 10px 0 0;
-        -webkit-border-radius: 10px 10px 0 0;
-        border-radius: 10px 10px 0 0;
-    }
-
-    .levelMeteo {
-        float: left;
-        margin-left: 30px;
-        width:500px;
-        height: 180px;
-        border: 1px solid #FFFF82;
-    }
-
-    .levelMeteo h6 {
-        background: #FFFF82;
-        color: #222;
-        -moz-border-radius: 10px 10px 0 0;
-        -webkit-border-radius: 10px 10px 0 0;
-        border-radius: 10px 10px 0 0;
-    }
-
-    .levelTrafic {
-        width:500px;
-        margin-left: 30px;
-        height: 180px;
-        border: 1px solid #001975;
-    }
-
-    .levelTrafic h6 {
-        background: #001975;
-        color: #fff;
-        -moz-border-radius: 10px 10px 0 0;
-        -webkit-border-radius: 10px 10px 0 0;
-        border-radius: 10px 10px 0 0;
-    }
-
-    .levelPlan,.levelInfo,.levelBus,.levelAir,.levelMeteo,.levelTrafic {
-        float: left;
-        background: #FFF;
-        -moz-border-radius: 15px;
-        -webkit-border-radius: 15px;
-        border-radius: 15px;
-        cursor: pointer;
-        box-shadow: 8px 10px 10px rgba(0, 0, 0, 0.5), inset 8px 10px 10px
-            rgba(255, 255, 255, 0.75);
-        -o-box-shadow: 8px 10px 10px rgba(0, 0, 0, 0.5), inset 8px 10px 10px
-            rgba(255, 255, 255, 0.75);
-        -webkit-box-shadow: 8px 10px 10px rgba(0, 0, 0, 0.5), inset 8px 10px
-            10px rgba(255, 255, 255, 0.75);
-        -moz-box-shadow: 8px 10px 10px rgba(0, 0, 0, 0.5), inset 8px 10px 10px
-            rgba(255, 255, 255, 0.75);
-    }
-
-    .title {
-        width: 100%;
-        height: 25px;
-        text-indent: 10px;
-        color: #222;
-        font-size: 1.2em;
-    }
-    /* Fixed Positioned AddThis Toolbox */
-    .addthis_toolbox.atfixed {
-        position: fixed;
-        top: 10%;
-        left: 20px;
-        border: 1px solid #eee;
-        padding: 5px 5px 1px;
-        width: 32px;
-        -moz-border-radius: 4px;
-        -webkit-border-radius: 4px;
-        border-radius: 4px;
-    }
-
-    .addthis_toolbox .custom_images a {
-        width: 32px;
-        height: 32px;
-        margin: 0;
-        padding: 0;
-        cursor: pointer;
-    }
-
-    .addthis_toolbox .custom_images a img {
-        border: 0;
-        margin: 0 0 1px;
-        opacity: 1.0;
-    }
-
-    .addthis_toolbox .custom_images a:hover img {
-        margin: 1px 0 0;
-        opacity: 0.75;
-    }
-	img{max-width:100%;}
-</style>
+﻿<link rel="stylesheet" type="text/css" href="<?php echo elgg_get_site_url(); ?>/vendors/css/style-localinformation.css" media="all">
 
 <script type="text/javascript" src="<?php echo elgg_get_site_url(); ?>/vendors/jquery/jquery.zoomooz.min.js"></script>
 <script type="text/javascript">
@@ -214,50 +54,71 @@ if (elgg_is_logged_in()) {
     @fclose($ouverture);
 }?>
 
-<div id="container">
+<div id="conteneur_left">
+<div class="menu">
+<h3 class="menu_title">Actualités</h3>
+ <div style="height:200px;width:100%;">
+            <marquee onMouseOver="this.stop()" onMouseOut="this.start()" scrollAmount="1"  direction="Up" align="left">
+            <?php
+                include('tweets.php');
+                $tweets = getTimeline(6,"mairievitry","content.txt",100);
+
+                for($i = 0; $i < 6; $i++){
+                    echo "<strong>".$tweets[$i]["create"]." : </strong>";
+                    echo $tweets[$i]["content"];
+                    echo '</br></br>';}?>
+            </marquee>  
+  </div>  
+</div>
+<br /><br />
+<div class="menu">
+<h3 class="menu_title">Donnez votre avis</h3>
+ <div style="height:auto;width:100%;text-align:center">
+     <a href="https://docs.google.com/spreadsheet/viewform?formkey=dEx2YXkyYnRkQ3NEa204cHVTODFRRnc6MQ#gid=0">
+	   <img src="mod/LocalInformationService/graphics/feedback.jpg" border="0" width="180px" height="200px" title="commentaire" alt="commentaire" />
+	 </a>  
+  </div>  
+</div>
+<ul>
+   <li class="facebook"><a href="https://www.facebook.com/SmartCityVitry?fref=ts" target="_blank" title="Share on Facebook">Facebook</a></li>
+   <li class="twitter"><a href="https://twitter.com/Peopleproject2" target="_blank"  title="Share on Twitter">Twitter</a></li>
+   <li class="linkedin"><a href="http://www.linkedin.com/groups?home=&gid=3376587&trk=anet_ug_hm" target="_blank" title="Share on linkedin">Linkedin</a></li>
+</ul>
+</div>
+<div id="conteneur_right">
     <div id="a1" class="zoom levelPlan">
         
         <h6 class="title">Plan</h6>
         <p>
-            <iframe width="600" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.fr/maps?f=q&amp;source=s_q&amp;hl=fr&amp;geocode=&amp;q=120+Rue+Paul+Armangot,+Vitry-sur-Seine&amp;aq=1&amp;oq=120+rue+paul+a&amp;sll=46.75984,1.738281&amp;sspn=8.174018,21.643066&amp;ie=UTF8&amp;hq=&amp;hnear=120+Rue+Paul+Armangot,+94400+Vitry-sur-Seine,+Val-De-Marne,+%C3%8Ele-de-France&amp;t=m&amp;z=14&amp;ll=48.776814,2.376365&amp;output=embed"></iframe>
+			<iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" 
+				src="mod/LocalInformationService/views/default/page/layouts/Geolocalisation/index.php">
+          
+            </iframe>
         </p>
-        <p>
-            <a href="http://maps.google.fr/maps?f=q&amp;source=embed&amp;hl=fr&amp;geocode=&amp;q=120+Rue+Paul+Armangot,+Vitry-sur-Seine&amp;aq=1&amp;oq=120+rue+paul+a&amp;sll=46.75984,1.738281&amp;sspn=8.174018,21.643066&amp;ie=UTF8&amp;hq=&amp;hnear=120+Rue+Paul+Armangot,+94400+Vitry-sur-Seine,+Val-De-Marne,+%C3%8Ele-de-France&amp;t=m&amp;z=14&amp;ll=48.776814,2.376365" style="color: FF9900; font-size: 8px;">Agrandir le plan</a>
-        </p>
+   
     </div>
 	    
     <div id="a5" class="zoom levelAir">
-        <h6 class="title">Autres services</h6>
-        <div style="float:left;margin-left:20px;margin-top:20px;">
-            <a href="ssearch/">
-                <img src="mod/LocalInformationService/graphics/semantic.png" alt="Recherche sémantique" title="Recherche sémantique" />
-            </a>
-        </div>
-        <div style="float:left;margin-left:20px;margin-top:10px;">
-            <a href="http://www.airparif.fr/etat-air/air-et-climat-commune/ninsee/94081">      
-             <img src="mod/LocalInformationService/graphics/logo_airparif.png" alt="Air et climat de votre commune" title="Air et climat de votre commune" />
-            </a>
-        </div>
-     
-        <br style="clear: both" />
-        <div>
-            <p style="color: #222;text-align: center;">
-                Votre avis nous intéresse, merci de remplir 
-                <a href="mod/LocalInformationService/views/default/page/layouts/feedback.php"> ce questionnaire </a>.
-            </p>
-        </div>
+        <h6 class="title">Local Search</h6>
+		<div style="margin-left:5px;margin-top:15px;float:left;">
+       <a href="../local-search/"><img src="mod/LocalInformationService/graphics/world-search.png" /></a>
+	   </div>
+	   <div style="float:left;margin-top:35px;">
+	   <h2 style="color:#222;">LOCAL SEARCH</h2>
+	   <p>Rechercher une adresse de ma ville avec Google Maps</p>
+	   </div>
     </div> 
     
     <div id="a4" class="zoom levelMeteo">
         <h6 class="title">Météo Et Qualité de l'Air</h6>    
-        <div style="margin-left: 10px; margin-top:27px;float:left;">
+        <div style="margin-left:2px;width:50%;margin-top:20px;float:left; ">
             <div id="widget_b3e2d1a30c710a9f7883610fc1f13136">
                 <a href="http://www.my-meteo.fr/previsions+meteo+france/paris.html" title="M&eacute;t&eacute;o Paris"></a>
                 <script type="text/javascript" src="http://www.my-meteo.fr/meteo+webmaster/widget/js.php?ville=251&amp;format=horizontal&amp;nb_jours=2&amp;icones&amp;c1=414141&amp;c2=21a2f3&amp;c3=d4d4d4&amp;c4=FFF&amp;id=b3e2d1a30c710a9f7883610fc1f13136"></script>
             </div>        
         </div>
-        <div style="border:1px solid #d4d4d4;width: 130px; height: 120px; margin-right:10px; margin-top: 15px;margin-left:auto">       
-                <div style="text-decoration:underline;font-style:italic;font-size:14px;text-align:center;margin:2px 0 4px 0; color: #21a2f3;">
+        <div style="border:1px solid #d4d4d4;width:25%;height: 120px;margin-top: 20px;float:right;margin-left:2px;">       
+                <div style="text-decoration:underline;font-size:9px;text-align:center;margin:2px 0 4px 0; color: #21a2f3;">
                      Indice de Pollution
                 </div>
                 <div style="float:left;">
@@ -297,7 +158,8 @@ if (elgg_is_logged_in()) {
                 echo '<li> B.F.Mitterrand:' . AfficheSource($domaine1).'</li>';
                 ?>
             </ol>
-           </div>
+        </div>
+		<p style="clear:both;"></p>
         <div style="float:left;margin-top:5px;">
            <img src="mod/LocalInformationService/graphics/180.jpg" />         
         </div>
@@ -315,7 +177,7 @@ if (elgg_is_logged_in()) {
                 ?>
              </ol>
             </div> 
-        <img style="float:right;" src="mod/LocalInformationService/graphics/home_e.gif" border="0" title="infos ratp" alt="infos ratp" />
+        <img style="float:right;margin-top:-50px;" src="mod/LocalInformationService/graphics/home_e.gif" border="0" title="infos ratp" alt="infos ratp" />
     </div>
     
     <div id="a5" class="zoom levelTrafic">
@@ -341,11 +203,8 @@ if (elgg_is_logged_in()) {
 		}
 		?>
     </div>
-
-      
-
-
-<div style="clear:both;margin-bottom:0;width:100%;height:100px;background:#008080;">
+</div>
+<div style="clear:both;margin-bottom:0;width:100%;height:100px;background:#00233F;">
 		<div class="elgg-footer-copyright" style="margin-left: 181px;margin-top:10px;padding: 8px;font-weight:normal;">
 		<p>ICOS has been developed within the project "PEOPLE: Pilot smart urban Ecosystems leveraging Open innovation for Promoting and enabLing future E- services", which is partly funded by the European Commission. Copyright © 2012 URENIO Research</p>
 		<p>Proudly powered by Citypassenger</p>
@@ -355,7 +214,6 @@ if (elgg_is_logged_in()) {
 		<img src ="<?php echo elgg_get_site_url(); ?>mod/vitryhubtheme/graphics/logo-eu-small.png" border="0" alt="UE logo" title="UE logo" />
 		</div>
 	  
-</div>
 </div>
  
 <script type="text/javascript">
