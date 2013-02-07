@@ -16,39 +16,53 @@
     @fclose($ouverture);
 }?>
 
-<div style="float:left;margin-top:5px;">
-            <img src="mod/LocalInformationService/graphics/132.jpg" />
-</div>     
-<div style="float:left;line-height:20px;">
-  <ol>
 <?php
-//Url de la page web
-$domaine = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B132/132_566_598/A";
-$domaine1 = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B132/132_566_598/R";
-//On affiche le code 
-//Dirction Vitry Moulin Vert
-echo '<li> Vitry Moulin Vert:' . AfficheSource($domaine)."</li>";
-//Dirction BFM
-echo '<li> B.F.Mitterrand:' . AfficheSource($domaine1).'</li>';
+//IUT
+$latitude="48.776824";
+$longitude="2.376373";
+//Cantine
+//$latitude="48.781886";
+//$longitude="2.398174";
+
+$maxLong = $longitude + 0.007;
+$minLong = $longitude - 0.007;
+$maxLat	 = $latitude + 0.007;
+$minLat	 =$latitude - 0.007;
+try
+		{
+			$bdd = new PDO('mysql:host=localhost;dbname=vitrydb', 'root', '');
+			$req = $bdd->prepare("SELECT * FROM station WHERE latitude > ? AND latitude < ? AND longitude > ? AND longitude < ?");
+			$req->execute(array($minLat, $maxLat, $minLong, $maxLong));
+			
+     		while($donnees = $req->fetch()){
+				
+				$sql = $bdd->prepare("SELECT bus.num_bus, bus_station.key_ratp, bus.code_direction, bus.direction FROM bus, bus_station WHERE ( bus.id_bus = bus_station.id_bus AND bus_station.id_station =?)");
+				$sql->execute(array($donnees["id_station"]));
+				
+				echo '<div>'.$donnees["nom_station"].' ('.$donnees["adresse"].')'.'</div >';
+				echo '<div>';
+				echo '<ol>';
+				while($databus = $sql->fetch()){
+				 $url="http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B".$databus["num_bus"]."/".$databus["key_ratp"]."/".$databus["code_direction"];
+					echo '<li> <img src="mod/LocalInformationService/graphics/'.$databus["num_bus"].'.png"/>'.' '.$databus["direction"].' :' . AfficheSource($url)."</li>";
+					
+				}
+				echo '</div>';
+				echo '</ol>';
+			
+			}
+			$reponse["taille"] = $i ;		
+		}
+		catch(Exception $e)
+		{
+		  die('Erreur : '.$e->getMessage());
+		  $reponse["erreur"] = 1;
+		  header('Content-Type: application/json');
+		  echo json_encode($reponse);
+
+		}
+
 ?>
-</ol>
-</div>
-<p style="clear:both;"></p>
-<div style="float:left;margin-top:5px;">
-<img src="mod/LocalInformationService/graphics/180.jpg" />         
-</div>
-<div style="float:left;line-height:20px;">
- <ol>
-<?php
-//Url de la page web
-$domaine = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B180/180_313_344/R";
-$domaine1 = "http://www.ratp.fr/horaires/fr/ratp/bus/prochains_passages/PP/B180/180_313_344/A";
-//On affiche le code 
-//Dirction Louis Aragant
-echo '<li> Villejuif Louis Aragon:'. AfficheSource($domaine)."</li>";
-//Dirction Choisy Sud 
-echo '<li>Charenton-Ecoles:' . AfficheSource($domaine1).'</li>';
-?>
-</ol>
-</div> 
+  <p style="clear:both;"></p>
+     
        

@@ -45,38 +45,15 @@ if (elgg_is_logged_in()) {
     @fclose($ouverture);
 }?>
 
-<div id="conteneur_left">
-<div class="menu">
-<h3 class="menu_title">Actualités</h3>
- <div style="height:200px;width:100%;">
-            <marquee onMouseOver="this.stop()" onMouseOut="this.start()" scrollAmount="1"  direction="Up" align="left">
-            <?php
-                include('tweets.php');
-                $tweets = getTimeline(6,"mairievitry","content.txt",100);
-
-                for($i = 0; $i < 6; $i++){
-                    echo "<strong>".$tweets[$i]["create"]." : </strong>";
-                    echo $tweets[$i]["content"];
-                    echo '</br></br>';}?>
-            </marquee>  
-  </div>  
-</div>
-<br /><br />
-<div class="menu">
-<h3 class="menu_title">Donnez votre avis</h3>
- <div style="height:auto;width:100%;text-align:center">
-     <a href="https://docs.google.com/spreadsheet/viewform?formkey=dEx2YXkyYnRkQ3NEa204cHVTODFRRnc6MQ#gid=0">
-	   <img src="mod/LocalInformationService/graphics/feedback.jpg" border="0" width="180px" height="200px" title="commentaire" alt="commentaire" />
-	 </a>  
-  </div>  
-</div>
+<!--
 <ul>
    <li class="facebook"><a href="https://www.facebook.com/SmartCityVitry?fref=ts" target="_blank" title="Share on Facebook">Facebook</a></li>
    <li class="twitter"><a href="https://twitter.com/Peopleproject2" target="_blank"  title="Share on Twitter">Twitter</a></li>
    <li class="linkedin"><a href="http://www.linkedin.com/groups?home=&gid=3376587&trk=anet_ug_hm" target="_blank" title="Share on linkedin">Linkedin</a></li>
 </ul>
-</div>
-<div id="conteneur_right">
+-->
+
+<div id="conteneur">
     <div id="a1" class="zoom levelPlan">
         
         <h6 class="title">Plan</h6>
@@ -90,13 +67,17 @@ if (elgg_is_logged_in()) {
     </div>
 	    
     <div id="a5" class="zoom levelAir">
-        <h6 class="title">Local Search</h6>
-		<div style="margin-left:5px;margin-top:15px;float:left;">
-       <a href="../SemanticSearch/"><img src="mod/LocalInformationService/graphics/world-search.png" /></a>
-	   </div>
-	   <div style="float:left;margin-top:35px;">
-	   <h2 style="color:#222;">LOCAL SEARCH</h2>
-	   <p>Rechercher une adresse de ma ville avec Google Maps</p>
+        <h6 class="title">Actualités</h6>
+		<div style="">
+      	     <?php
+                include('tweets.php');
+                $tweets = getTimeline(6,"mairievitry","content.txt",100);
+
+                for($i = 0; $i < 4; $i++){
+                    echo "<strong>".$tweets[$i]["create"]." : </strong>";
+                    echo $tweets[$i]["content"];
+                    echo '</br></br>';}?>
+          
 	   </div>
     </div> 
     
